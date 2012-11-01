@@ -1,4 +1,6 @@
 Sample::Application.routes.draw do
+  resources :teachers
+
   resources :students
 
   root :to => "students#index"
