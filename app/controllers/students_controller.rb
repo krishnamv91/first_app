@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_filter :need_ssl, :only => :edit
+  #force_ssl :only => :edit
   # GET /students
   # GET /students.xml
   def index
@@ -80,4 +82,8 @@ class StudentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def need_ssl
+    redirect_to "https://#{request.hosts}:#{request.port}/#{request.query_string}"
+  end
+
 end
